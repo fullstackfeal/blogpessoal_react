@@ -55,12 +55,12 @@ function FormTema() {
 
         if (id !== undefined) {
             try {
-                await atualizar(`/temas${id}`, tema, setTema, {
+                await atualizar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
                 alert('O Tema foi atualizado com sucesso!')
             } catch (error: any) {
-                if (error.tostring().includes('401')) {
+                if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
                     alert('Erro ao atualizar o tema.')
