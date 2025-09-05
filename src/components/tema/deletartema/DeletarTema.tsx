@@ -17,7 +17,7 @@ function DeletarTema() {
         try {
             await buscar(`/temas/${id}`, setTema, {
                 headers: {
-                    'Authorization': token
+                    Authorization: token
                 }
             })
         } catch (error: any) {
