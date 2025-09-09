@@ -5,6 +5,7 @@ import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import type Tema from "../../../models/Tema";
 import type Postagem from "../../../models/Postagem";
 import { ClipLoader } from "react-spinners";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormPostagem() {
 
@@ -55,7 +56,7 @@ function FormPostagem() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado')
+            ToastAlerta('Você precisa estar logado!', 'erro')
             navigate('/')
         }
     }, [token])
@@ -100,13 +101,13 @@ function FormPostagem() {
                     }
                 });
 
-                alert('Postagem atualizada com sucesso!')
+                ToastAlerta('Postagem atualizada com sucesso!', 'sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar postagem.')
+                    ToastAlerta('Erro ao atualizar postagem.', 'erro')
                 }
             }
 
@@ -118,13 +119,13 @@ function FormPostagem() {
                     }
                 });
 
-                alert('Postagem cadastrada com sucesso!')
+                ToastAlerta('Postagem cadastrada com sucesso!', 'sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao cadastrar postagem.')
+                    ToastAlerta('Erro ao cadastrar postagem.', 'erro')
                 }
             }
         }
@@ -198,6 +199,3 @@ function FormPostagem() {
 }
 
 export default FormPostagem
-
-//function includes(arg0: string) {
- //   throw new Error("Function not implemented."); }

@@ -4,6 +4,7 @@ import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthContext";
 import type Tema from "../../../models/Tema";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormTema() {
 
@@ -58,12 +59,12 @@ function FormTema() {
                 await atualizar(`/temas`, tema, setTema, {
                     headers: { Authorization: token }
                 })
-                alert('O Tema foi atualizado com sucesso!')
+                ToastAlerta('Tema atualizado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar o tema.')
+                    ToastAlerta('Erro ao atualizar tema.', 'erro')
                 }
             }
         } else {
@@ -71,12 +72,12 @@ function FormTema() {
                 await cadastrar(`/temas`, tema, setTema, {
                     headers: { Authorization: token }
                 })
-                alert('O Tema foi cadastrado com sucesso!')
+                ToastAlerta('Tema cadastrado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if (error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao cadastrar o tema.')
+                    ToastAlerta('Erro ao cadastrar tema.', 'erro')
                 }
             }
         }
@@ -113,7 +114,7 @@ function FormTema() {
                         /> :
                         <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
                     }
-                    
+
                 </button>
             </form>
         </div >
